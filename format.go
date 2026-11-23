@@ -41,7 +41,11 @@ func (c *Client) buildAttachmentURL(token, contentType string) string {
 // extractMentionsAndAttachments converts Dynamite Message annotations into
 // normalized Mentions, Attachments, and any appended meet/link info.
 func (c *Client) extractMentionsAndAttachments(pm *protoMessage) ([]Mention, []Attachment, string) {
-	if pm == nil || len(pm.Annotations) == 0 {
+	if pm == nil {
+		return nil, nil, ""
+	}
+
+	if len(pm.Annotations) == 0 {
 		return nil, nil, pm.TextBody
 	}
 
