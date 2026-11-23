@@ -414,6 +414,7 @@ func (c *Client) fetchSelfIdentity(ctx context.Context) error {
 	c.Unlock()
 
 	c.CacheUser(me)
+	c.applyUserStatusUpdate(st)
 
 	return nil
 }
